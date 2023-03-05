@@ -25,11 +25,12 @@ namespace LAB_1.Handlers
             else if (request.HttpMethod == "POST")
             {
                 try
-                {
-                    int x = int.Parse(request.Form.Get("X")), y = int.Parse(request.Form.Get("Y"));
+                {//переделал под wpf
+                    int x = int.Parse(request.QueryString.Get("X")), y = int.Parse(request.QueryString.Get("Y"));
 
                     response.ContentType = "text/plain";
-                    response.Write("SUM = " + (x + y));
+                    // response.Write("SUM = " + (x + y));
+                    response.Write((x + y));
                 }
                 catch (Exception ex)
                 {

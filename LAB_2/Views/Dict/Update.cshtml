@@ -1,0 +1,28 @@
+﻿@model LAB_2.Models.DictModel
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<form action="/Dict/UpdateSave" method="post">
+    <table>
+        <tr>
+            <td>Existing id</td>
+            <td>Change name</td>
+            <td>Change number</td>
+
+        </tr>
+        <tr>
+            <td><input type="text" name="Id" /></td>
+            <td><input type="text" name="Name" /></td>
+            <td><input type="text" name="Number" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Update"/>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

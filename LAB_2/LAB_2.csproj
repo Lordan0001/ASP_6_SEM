@@ -179,6 +179,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Dict\Index.cshtml" />
     <Content Include="Views\Dict\Add.cshtml" />
+    <Content Include="Views\Dict\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

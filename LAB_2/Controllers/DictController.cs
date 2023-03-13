@@ -15,13 +15,7 @@ namespace LAB_2.Controllers
         public ActionResult Index()
         {
             List<DictModel> dictModels = new List<DictModel>();
-            /*         using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
-                     {
-                         string json = r.ReadToEnd();
-                         dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
-                         ViewBag.NumberList = dictModels;
 
-                     }*/
             string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
             dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
             ViewBag.NumberList = dictModels;
@@ -45,30 +39,50 @@ namespace LAB_2.Controllers
             newDictModel.Number = Number;
 
             List<DictModel> dictModels = new List<DictModel>();
-            /*            using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
-                        {
-                            string json = r.ReadToEnd();
-                            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
-                            dictModels.Add(newDictModel);
-                            json = JsonConvert.SerializeObject(dictModels, Formatting.Indented);//TODO Serialize this into file beach
-                            ViewBag.NumberList = dictModels;
-
-                        }*/
-
-
+ 
             string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
             dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
             dictModels.Add(newDictModel);
             System.IO.File.WriteAllText(Server.MapPath("/DB/PhoneNumber.json"), JsonConvert.SerializeObject(dictModels));
             ViewBag.NumberList = dictModels;
 
+            return View("Index");
+        }
 
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+        public ActionResult UpdateSave(int id,string name,string number)
+        {
+            List<DictModel> dictModels = new List<DictModel>();
+
+            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
+            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+
+            foreach (DictModel dictModel in dictModels) {
+                if (dictModel.Id == id) { 
+                    dictModel.Name = name;
+                    dictModel.Number = number;
+                }
+            }
+            ViewBag.NumberList = dictModels;
+            System.IO.File.WriteAllText(Server.MapPath("/DB/PhoneNumber.json"), JsonConvert.SerializeObject(dictModels));
 
             return View("Index");
         }
 
 
-
-
     }
 }
+
+
+//temp cringe desirialize
+/*         using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
+         {
+             string json = r.ReadToEnd();
+             dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
+             ViewBag.NumberList = dictModels;
+
+         }*/

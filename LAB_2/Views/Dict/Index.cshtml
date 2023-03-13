@@ -1,0 +1,33 @@
+﻿@model LAB_2.Models.DictModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    <div>@ViewData["Head"]</div>
+    <div>@ViewBag.Second</div>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Number</th>
+        </tr>
+        @foreach (var b in ViewBag.NumberList)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Name</td>
+                <td>@b.Number</td>
+
+            </tr>
+
+        }
+    </table>
+
+
+
+</div>
+

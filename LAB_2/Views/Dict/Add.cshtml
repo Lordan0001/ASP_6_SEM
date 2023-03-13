@@ -1,0 +1,28 @@
+﻿@model LAB_2.Models.DictModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<form action="/Dict/AddSave" method="post">
+    <table>
+        <tr>
+            <td>id</td>
+            <td>Name</td>
+            <td>Number</td>
+
+        </tr>
+        <tr>
+            <td><input type="text" name="Id" /></td>
+            <td><input type="text" name="Name" /></td>
+            <td><input type="text" name="Number" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="ADD"/>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

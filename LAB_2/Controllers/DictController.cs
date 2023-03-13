@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using Newtonsoft.Json;
+using Microsoft.Ajax.Utilities;
+using System.Xml.Linq;
 
 namespace LAB_2.Controllers
 {
@@ -53,7 +55,7 @@ namespace LAB_2.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         public ActionResult UpdateSave(int id,string name,string number)
         {
             List<DictModel> dictModels = new List<DictModel>();
@@ -73,7 +75,34 @@ namespace LAB_2.Controllers
             return View("Index");
         }
 
+        public ActionResult Delete() { 
+        
+            return View();
+        }
 
+        public ActionResult DeleteSave(int id)
+        {
+
+            List<DictModel> dictModels = new List<DictModel>();
+
+            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
+            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+
+            foreach (DictModel dictModel in dictModels)
+            {
+                if (dictModel.Id == id)
+                {
+                    dictModels.Remove(dictModel);
+                    break;
+                   
+                }
+            }
+            ViewBag.NumberList = dictModels;
+            System.IO.File.WriteAllText(Server.MapPath("/DB/PhoneNumber.json"), JsonConvert.SerializeObject(dictModels));
+
+
+            return View("Index");
+        }
     }
 }
 

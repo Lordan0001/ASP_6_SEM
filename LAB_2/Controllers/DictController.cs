@@ -13,16 +13,19 @@ namespace LAB_2.Controllers
     {
         // GET: Dict
         public ActionResult Index()
-        {           
+        {
             List<DictModel> dictModels = new List<DictModel>();
-            using(StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
-            {
-                string json = r.ReadToEnd();
-                dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
-                ViewBag.NumberList = dictModels;
-            
-            }
-     
+            /*         using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
+                     {
+                         string json = r.ReadToEnd();
+                         dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
+                         ViewBag.NumberList = dictModels;
+
+                     }*/
+            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
+            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+            ViewBag.NumberList = dictModels;
+
             ViewData["Head"] = "Привет мир!";
             ViewBag.Second = "Hey cruel world!";
             return View();
@@ -34,7 +37,7 @@ namespace LAB_2.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSave(int Id,string Name,string Number)
+        public ActionResult AddSave(int Id, string Name, string Number)
         {
             DictModel newDictModel = new DictModel();
             newDictModel.Id = Id;
@@ -42,16 +45,22 @@ namespace LAB_2.Controllers
             newDictModel.Number = Number;
 
             List<DictModel> dictModels = new List<DictModel>();
-            using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
-            {
-                string json = r.ReadToEnd();
-                dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
-                dictModels.Add(newDictModel);
-                json = JsonConvert.SerializeObject(dictModels, Formatting.Indented);//TODO Serialize this into file beach
-                ViewBag.NumberList = dictModels;
+            /*            using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
+                        {
+                            string json = r.ReadToEnd();
+                            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
+                            dictModels.Add(newDictModel);
+                            json = JsonConvert.SerializeObject(dictModels, Formatting.Indented);//TODO Serialize this into file beach
+                            ViewBag.NumberList = dictModels;
 
-            }
+                        }*/
 
+
+            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
+            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+            dictModels.Add(newDictModel);
+            System.IO.File.WriteAllText(Server.MapPath("/DB/PhoneNumber.json"), JsonConvert.SerializeObject(dictModels));
+            ViewBag.NumberList = dictModels;
 
 
 

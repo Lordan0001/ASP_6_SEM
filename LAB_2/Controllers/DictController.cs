@@ -18,6 +18,7 @@ namespace LAB_2.Controllers
             List<DictModel> dictModels = new List<DictModel>();
             string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
             dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+            dictModels = dictModels.OrderBy(o=>o.Name).ToList();
             return dictModels;
         }
         // GET: Dict

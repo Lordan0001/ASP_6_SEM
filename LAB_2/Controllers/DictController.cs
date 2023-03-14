@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace LAB_2.Controllers
 {
-    public class DictController : Controller
+    public class DictController : Controller//maybe i should add some id checkers))
     {
         public List<DictModel> DeserializeJson()
         {
@@ -43,9 +43,9 @@ namespace LAB_2.Controllers
             newDictModel.Number = Number;
 
             List<DictModel> dictModels = new List<DictModel>();
- 
-            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
-            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+
+
+            dictModels = DeserializeJson();
             dictModels.Add(newDictModel);
             System.IO.File.WriteAllText(Server.MapPath("/DB/PhoneNumber.json"), JsonConvert.SerializeObject(dictModels));
             ViewBag.NumberList = dictModels;
@@ -62,8 +62,8 @@ namespace LAB_2.Controllers
         {
             List<DictModel> dictModels = new List<DictModel>();
 
-            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
-            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+           
+            dictModels = DeserializeJson();
 
             foreach (DictModel dictModel in dictModels) {
                 if (dictModel.Id == id) { 
@@ -87,8 +87,8 @@ namespace LAB_2.Controllers
 
             List<DictModel> dictModels = new List<DictModel>();
 
-            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
-            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+            
+            dictModels = DeserializeJson();
 
             foreach (DictModel dictModel in dictModels)
             {
@@ -107,13 +107,3 @@ namespace LAB_2.Controllers
         }
     }
 }
-
-
-//temp cringe desirialize
-/*         using (StreamReader r = new StreamReader(Server.MapPath("/DB/PhoneNumber.json")))
-         {
-             string json = r.ReadToEnd();
-             dictModels = JsonConvert.DeserializeObject<List<DictModel>>(json);
-             ViewBag.NumberList = dictModels;
-
-         }*/

@@ -13,17 +13,19 @@ namespace LAB_2.Controllers
 {
     public class DictController : Controller
     {
+        public List<DictModel> DeserializeJson()
+        {
+            List<DictModel> dictModels = new List<DictModel>();
+            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
+            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
+            return dictModels;
+        }
         // GET: Dict
         public ActionResult Index()
         {
-            List<DictModel> dictModels = new List<DictModel>();
-
-            string jsonData = System.IO.File.ReadAllText(Server.MapPath("/DB/PhoneNumber.json"));
-            dictModels = JsonConvert.DeserializeObject<List<DictModel>>(jsonData);
-            ViewBag.NumberList = dictModels;
-
-            ViewData["Head"] = "Привет мир!";
-            ViewBag.Second = "Hey cruel world!";
+            ViewBag.NumberList = DeserializeJson();
+            //ViewData["Head"] = "Привет мир!";
+            ViewBag.Second = "list of phone numbers";
             return View();
         }
 

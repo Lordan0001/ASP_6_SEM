@@ -1,0 +1,57 @@
+﻿@using Phonebook.Helpers
+@model Phonebook.Models.HandbookRecord
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <p><a href="~/Dict/Index">Главная страница</a></p>
+    <h2>@ViewBag.SqlException</h2>
+    @Html.NewPhonebookEntry()
+    @*@using (Html.BeginForm("AddSave", "Dict", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>Введите фамилию: </td>
+                <td>
+                    @Html.EditorFor(m => m.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td>Введите номер телефона: </td>
+                <td>
+                    @Html.EditorFor(m => m.Phone)
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    }*@
+    @*<form method="post" action="/Dict/AddSave">
+            <table>
+                <tr>
+                    <td><p>Введите фамилию: </p></td>
+                    <td><input type="text" name="LastName"/> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите номер телефона: </p></td>
+                    <td><input type="text" name="Phone"/> </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Отправить" /> </td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>*@
+</body>
+</html>

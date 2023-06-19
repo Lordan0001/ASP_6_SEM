@@ -1,0 +1,11 @@
+﻿@model Phonebook.Models.HandbookRecord
+
+<tr>
+    <td><p>@Model.Id</p></td>
+    <td><p>@Model.LastName</p></td>
+    <td><p>@Model.Phone</p></td>
+    <td>
+        <p><a href="~/Dict/Update/?id=@Model.Id">Изменить</a></p>
+        <p><a href="~/Dict/Delete/?id=@Model.Id">Удалить</a></p>
+    </td>
+</tr>

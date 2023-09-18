@@ -25,7 +25,7 @@ namespace lab5a.Controllers
         {
             return "GET:M01";
         }
-        // /V2
+        //  
         // /V2/MResearch
         // /V2/MResearch/M02
         // /MResearch/M02

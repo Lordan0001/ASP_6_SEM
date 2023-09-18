@@ -15,8 +15,13 @@ namespace Phonebook.Util
         public override void Load()
         {
             //Bind<IRepository<HandbookRecord>>().To<DatabaseRepository.HandbookRepository>();
-            //Bind<IRepository<HandbookRecord>>().To<DatabaseRepository.HandbookRepository>().InThreadScope();
-            Bind<IRepository<HandbookRecord>>().To<MyRepository.JsonRepository>();
+            Bind<IRepository<HandbookRecord>>().To<DatabaseRepository.HandbookRepository>().InThreadScope();
+
+            //Bind<IRepository<HandbookRecord>>().To<MyRepository.JsonRepository>();
+            // Bind<IRepository<HandbookRecord>>().To<MyRepository.JsonRepository>().InThreadScope();
+
+            //Bind<IRepository<HandbookRecord>>().To<MyRepository.JsonRepository>().InRequestScope();
+
         }
     }
 }

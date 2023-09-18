@@ -17,7 +17,7 @@ namespace lab5b.Controllers
         }
         static int x = 9;
         [OutputCache(Duration = 5, Location = OutputCacheLocation.ServerAndClient), HttpGet]
-        public ActionResult AD()
+        public ActionResult AD(string a, string y)
         {
             x++;
             string t = DateTime.Now.ToLongTimeString();

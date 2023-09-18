@@ -21,20 +21,24 @@
                 <td><p>Номер</p></td>
                 <td><p>Действия</p></td>
             </tr>
-            @foreach (var b in handbookRecords)
+            @foreach (var record in handbookRecords)
             {
-                Html.RenderPartial("_GetRecords", b);
-        @*<tr>
-        <td><p>@b.Id</p></td>
-        <td><p>@b.LastName</p></td>
-        <td><p>@b.Phone</p></td>
-        <td>
-            <p><a href="~/Dict/Update/?id=@b.Id">Изменить</a></p>
-            <p><a href="~/Dict/Delete/?id=@b.Id">Удалить</a></p>
-        </td>
-    </tr>*@
-    }
+                @RenderRecord(record) @* Используем внутренний хелпер *@
+            }
         </table>
     </div>
+
+    @helper RenderRecord(Phonebook.Models.HandbookRecord record)
+    {
+        <tr>
+            <td><p>@record.Id</p></td>
+            <td><p>@record.LastName</p></td>
+            <td><p>@record.Phone</p></td>
+            <td>
+                <p><a href="~/Dict/Update/?id=@record.Id">Изменить</a></p>
+                <p><a href="~/Dict/Delete/?id=@record.Id">Удалить</a></p>
+            </td>
+        </tr>
+    }
 </body>
 </html>

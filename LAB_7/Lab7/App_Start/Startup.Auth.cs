@@ -62,8 +62,8 @@ namespace Lab7
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "332550850500-bafjoap5mjjsr3qej7743dctcs27qqs5.apps.googleusercontent.com",
-                ClientSecret = "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",
+                ClientId = "ClientId",
+                ClientSecret = "ClientSecret",
                 Provider = new GoogleOAuth2AuthenticationProvider()
                 {
                     OnAuthenticated = context =>
